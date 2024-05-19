@@ -1,0 +1,94 @@
+
+<table>
+  <tr>
+    <th>Employee Name:</th>
+    <td>{{employeeName}}</td>
+  </tr>
+  <tr>
+    <th>Employee Status:</th>
+    <td>{{isPresent ? "Present" : "NotPresent"}}</td>
+  </tr>
+  <tr>
+    <th>Toggle Attendance:</th>
+    <td><button (click)="onToggleAttendance()">{{isPresent ? "Mark Absent" : "Mark Present"}}</button></td>
+  </tr>
+  <tr>
+    <th>Employee Image:</th>
+    <td><img [src]="imageUrl" alt="EmployeeImage" ></td>
+  </tr>
+
+  <tr>
+    <th>Colspan Attribute:</th>
+    <td>
+       <table>
+        <thead>
+          <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+          </tr>
+          <tr>
+            <td>Data 3</td>
+            <td>Data 4</td>
+          </tr>
+        
+        </tbody>
+       </table>
+    </td>
+  </tr>
+  <tr>
+    <th>Special Class:</th>
+    <td>
+      <div [class.active]="isSpecial"></div>
+    </td>
+  </tr>
+  <tr>
+    <th>Custom Color:</th>
+    <td>
+      <p [style.color]="textColor" >This text has custom color.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Two-Way Binding:</th>
+    <td>
+      <input type="text" [(ngModel)] = "employeeStatus">
+      <p id="twoway">Employee Status: {{employeeStatus}}</p>
+    </td>
+  </tr>
+</table>
+
+
+app.component.ts.file
+------------------------------------
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'angularapp';
+  employeeName = "Jayesh";
+
+  isPresent = true;
+
+  onToggleAttendance(){
+    if (this.isPresent) {
+      this.isPresent = false;
+    } else {
+      this.isPresent = true;
+    }
+  }
+  colSpan = 2;
+  isSpecial = true;
+  textColor = "red";
+  employeeStatus = "";
+  imageUrl = "https://images.rawpixel.com/image_800/cHJpdmFOZS9sc¡9pbWFnZXMvd2Vic2I0ZS8yMDIyLTA1L3Y5MzctYWV3LTEzOS5";
+}
