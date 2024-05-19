@@ -1,0 +1,76 @@
+employee-attendance > employee-attendance.component.html
+------------------------------------------------------------------------
+
+<p>Employee Attendance</p>
+
+<div *ngIf="showMessage;">
+<div *ngIf="employees.length > 0; else noData">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Attendance</th>
+            </tr>
+        </thead>
+        <tbody >
+            <tr *ngFor="let i of employees" >
+                <td>{{i.id}}</td>
+                <td>{{i.name}}</td>
+                <td>{{i.position}}</td>
+                <td [ngClass]="i.attendance === 'Present' ? 'green-background' : 'red-background'">{{ i.attendance }}</td>
+            </tr>
+        </tbody>
+    </table>  
+</div>
+</div>
+
+<ng-template #noData>
+    <p id="noData">No Data available</p>
+</ng-template>
+
+<button (click)="toggleShowMessage()">{{showMessage ? 'Hide Data' : 'Show Data'}}</button>
+
+employee-attendance > employee-attendance.component.ts
+------------------------------------------------------------------------ 
+
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-employee-attendance',
+  templateUrl: './employee-attendance.component.html',
+  styleUrls: ['./employee-attendance.component.css']
+})
+export class EmployeeAttendanceComponent implements OnInit {
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  employees:any[] = [
+    {id:1,name:"Jayesh",position:'Admin',attendance:"Present"},
+    {id:2,name:"Alex",position:'User',attendance:"Absent"},
+  ];
+
+  showMessage = false;
+  toggleShowMessage(){
+    this.showMessage = !this.showMessage;
+  }
+
+}
+
+employee-attendance > employee-attendance.component.css
+------------------------------------------------------------------------
+
+.green-background {
+  background-color: green;
+  color: white;
+}
+
+.red-background {
+  background-color: red;
+  color: white;
+}
+
+
